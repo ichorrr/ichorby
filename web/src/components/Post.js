@@ -11,7 +11,8 @@ const Post = ({ post }) => {
         heiaght="50px"
       />{' '}
       <h3>{post.title}</h3>
-      {post.createdAt} {post.author.name} <ReactMarkdown source={post.body} />
+      {post.createdAt} {post.author.name}
+      {post.body}
     </article>
   );
 };

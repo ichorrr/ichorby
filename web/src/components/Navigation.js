@@ -1,13 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import '../css/app.css';
+import styled from 'styled-components';
+import { useQuery, useMutation, useApolloClient, gql } from '@apollo/client';
 
-const Navigation = () => {
+import ButtonAsLink from './ButtonAsLink';
+
+const UserState = styled.div`
+  margin-left: auto;
+`;
+const   IS_LOGGED_IN = gql`
+    {
+      isLoggedIn @client
+    }
+`;
+
+const Navigation = props => {
+  const { data, client } = useQuery(IS_LOGGED_IN);
   return (
     <nav className="App-link">
       <ul>
         <li>
-          <Link to="/home">Ichor.by</Link>
+          <Link to="">Ichor.by</Link>
         </li>
         <li>
           <Link to="/news">News</Link>
@@ -24,9 +38,38 @@ const Navigation = () => {
         <li>
           <Link to="/contacts">Contacts</Link>
         </li>
+        <UserState>
+        {data.isLoggedIn ? (
+          <ButtonAsLink
+            onClick={() => {
+              // remove the token
+              localStorage.removeItem('token');
+              // clear the application's cache
+              client.resetStore();
+              // update local state
+              client.writeData({ data: { isLoggedIn: false } });
+              // redirect the user to the homepage
+              props.history.push('/');
+            }}
+          >
+            Logout
+          </ButtonAsLink>
+        ) : (
+          <UserState>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+              </li><li>
+              <Link to="/signin">Sign In</Link>
+            </li>
+          </UserState>
+        )
+
+        }
+        </UserState>
+
       </ul>
     </nav>
   );
 };
 
-export default Navigation;
+export default withRouter(Navigation);

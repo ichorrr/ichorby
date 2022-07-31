@@ -6,6 +6,18 @@ import { useQuery, gql } from '@apollo/client';
 import ReactMarkdown from 'react-markdown';
 import PostFeed from '../components/PostFeed';
 import styled from 'styled-components';
+import Post from '../components/Post';
+
+const PostParagraph = styled.div`
+    background-color: #dae6f7;
+    width: 100%;
+    display: block;
+    margin-bottom: 1em;
+
+    :hover {
+      background: #ccd3e6;
+    }
+`;
 
 const GET_NOTES = gql`
   query postFeed($cursor: String) {
@@ -32,15 +44,16 @@ const Home = () => {
 
   return (
     <div className="App-link">
-      <PostFeed posts={data.postFeed.posts} />;
+
       <h1>Topical Ichor-Messanger Uni (TIMU)</h1>
       <p>
         The specified software is intended for thematic communication between.
         everyone
       </p>
-      <Navigation />
+      <PostParagraph><PostFeed posts={data.postFeed.posts} /></PostParagraph>
     </div>
   );
+
 };
 
 export default Home;

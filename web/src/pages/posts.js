@@ -1,7 +1,9 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
-
+import { Link } from 'react-router-dom';
 import Post from '../components/Post';
+import { useQuery, gql } from '@apollo/client';
+import ReactMarkdown from 'react-markdown';
+
 
 const GET_POST = gql`
   query getPost($id: ID!) {
@@ -13,18 +15,19 @@ const GET_POST = gql`
       body
       author {
         name
+        email
       }
     }
   }
 `;
 
 const PostPage = props => {
-  const id = props.match.params._id;
-  const { data, loading, error } = useQuery(GET_POST, { variables: { id } });
+  let  id = props.match.params.id;
+  const { loading, error, data } = useQuery(GET_POST, { variables: { id } });
   if (loading) return <p>loading...</p>;
   if (error) return <p>error...</p>;
 
-  return <Post post={data.post} />;
+  return <Post post={data.getPost} />
 };
 
 export default PostPage;
