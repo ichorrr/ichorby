@@ -50,19 +50,16 @@ const UserForm = props => {
           });
         }}
       >
-        {props.formType === 'signup' && (
-          <React.Fragment>
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="name">Username:</label>
             <input
               required
               type="text"
-              id="username"
-              name="username"
-              placeholder="username"
+              id="name"
+              name="name"
+              placeholder="name"
               onChange={onChange}
             />
-          </React.Fragment>
-        )}
+
         <label htmlFor="email">Email:</label>
         <input
           required
