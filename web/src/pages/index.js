@@ -8,6 +8,7 @@ import Home from './home';
 import PostPage from './posts';
 import SignUp from './signup';
 import SignIn from './signin';
+import NewPost from './new';
 
 const Pages = () => {
   return (
@@ -15,6 +16,7 @@ const Pages = () => {
     <Layout>
       <Route exact path="/" component={Home} />
       <Route path="/posts/:id" component={PostPage} />
+      <Route path="/new" component={NewPost} />
       <Route path="/signup" component={SignUp} />
       <Route path="/signin" component={SignIn} />
       </Layout>

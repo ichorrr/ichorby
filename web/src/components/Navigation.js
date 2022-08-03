@@ -26,6 +26,9 @@ const Navigation = props => {
         <li>
           <Link to="/news">News</Link>
         </li>
+        <UserState>
+        {data.isLoggedIn ? (
+          <UserState>
         <li>
           <Link to="/myposts">My Posts</Link>
         </li>
@@ -35,6 +38,12 @@ const Navigation = props => {
         <li>
           <Link to="/mycomments">My comments</Link>
         </li>
+        </UserState>
+      ) : (
+          <UserState></UserState>
+        )
+      }
+        </UserState>
         <li>
           <Link to="/contacts">Contacts</Link>
         </li>
