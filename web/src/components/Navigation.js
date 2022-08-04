@@ -49,6 +49,7 @@ const Navigation = props => {
         </li>
         <UserState>
         {data.isLoggedIn ? (
+          <UserState>
           <ButtonAsLink
             onClick={() => {
               // remove the token
@@ -61,8 +62,15 @@ const Navigation = props => {
               props.history.push('/');
             }}
           >
+          <li>
             Logout
+          </li>
           </ButtonAsLink>
+
+          <li>
+          <Link to="/new">New post</Link>
+          </li>
+          </UserState>
         ) : (
           <UserState>
             <li>

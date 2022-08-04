@@ -16,9 +16,10 @@ const TextArea = styled.textarea`
   height: 90%;
 `;
 
-const NoteForm = props => {
+const PostForm = props => {
+
   // set the default state of the form
-  const [value, setValue] = useState({ content: props.content || '' });
+  const [value, setValue] = useState({ body: props.body || '' });
 
   // update the state when a user types in the form
   const onChange = event => {
@@ -43,9 +44,9 @@ const NoteForm = props => {
         <TextArea
           required
           type="text"
-          name="content"
+          name="body"
           placeholder="Note content"
-          value={value.content}
+          value={value.body}
           onChange={onChange}
         />
         <Button type="submit">Save</Button>
@@ -54,4 +55,4 @@ const NoteForm = props => {
   );
 };
 
-export default NoteForm;
+export default PostForm;
