@@ -5,12 +5,13 @@ import styled from 'styled-components';
 import PostForm from '../components/PostForm';
 
 const NEW_POST = gql`
-  mutation createPost($title: String, $category: String, $body: String) {
+  mutation createPost($title: String!, $category: String!, $body: String!) {
     createPost(title: $title, category: $category, body: $body) {
       _id
         title
-        createdAt
-        updatedAt
+        category{
+          catname
+        }
         body
         author {
           name
@@ -29,15 +30,17 @@ const NewPost = props => {
 
   const [ data, { loading, error } ] = useMutation(NEW_POST, {
     onCompleted: data => {
+      console.log(data.createPost)
       props.history.push(`posts/${data.createPost._id}`);
     }
   });
 
   return (
+
     <React.Fragment>
     {loading && <p> loading...</p>}
     {error && <p>Error saving the note</p>}
-
+{console.log(data)}
       <PostForm action={data} />
     </React.Fragment>
   );

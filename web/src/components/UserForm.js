@@ -63,7 +63,7 @@ const UserForm = props => {
         <label htmlFor="email">Email:</label>
         <input
           required
-          type="email"
+          type="text"
           id="email"
           name="email"
           placeholder="Email"
@@ -72,7 +72,7 @@ const UserForm = props => {
         <label htmlFor="password">Password:</label>
         <input
           required
-          type="password"
+          type="text"
           id="password"
           name="password"
           placeholder="Password"
