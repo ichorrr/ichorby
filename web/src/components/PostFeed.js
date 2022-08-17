@@ -4,10 +4,13 @@ import Post from './Post';
 import { Link } from 'react-router-dom';
 
 const PostBorder = styled.div`
-  padding: 2em;
-  margin-top: 3em;
-  font-family: Arial;
-  line-height: 1.8em;
+  padding: 3em 3em;
+  display: block;
+`;
+
+const PostBlock = styled.div`
+  padding-bottom: 4em;
+  display: block;
 `;
 
 const PostFeed = ({ posts }) => {
@@ -15,10 +18,10 @@ const PostFeed = ({ posts }) => {
     <PostBorder>
       {' '}
       {posts.map(post => (
-        <div key={post._id}>
+        <PostBlock key={post._id}>
           <Post post={post} />
           <Link to={`posts/${post._id}`}>Permalink</Link>
-        </div>
+        </PostBlock>
       ))}
     </PostBorder>
   );

@@ -30,9 +30,14 @@
   color: #268dec;
 }
 
+.App-link h3 {
+  font: 1.6em 'Arial', sans-serif;
+  color: #086ac4;
+}
+
 .App-link p {
   font: 1em 'Arial', sans-serif;
-  text-indent: 1.2em;
+  line-height: 1.6em;
   color: #364a5d;
 }
 

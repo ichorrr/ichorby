@@ -12,6 +12,9 @@ const GET_POST = gql`
       title
       createdAt
       updatedAt
+      category{
+        catname
+      }
       body
       author {
         name

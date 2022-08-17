@@ -13,10 +13,6 @@ const PostParagraph = styled.div`
     width: 100%;
     display: block;
     margin-bottom: 1em;
-
-    :hover {
-      background: #ccd3e6;
-    }
 `;
 
 const GET_NOTES = gql`
@@ -28,6 +24,9 @@ const GET_NOTES = gql`
         _id
         title
         createdAt
+        category{
+          catname
+        }
         body
         author {
           name
