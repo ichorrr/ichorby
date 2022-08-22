@@ -3,26 +3,7 @@ import { Link } from 'react-router-dom';
 import Post from '../components/Post';
 import { useQuery, gql } from '@apollo/client';
 import ReactMarkdown from 'react-markdown';
-
-
-const GET_POST = gql`
-  query getPost($id: ID!) {
-    getPost(_id: $id) {
-      _id
-      title
-      createdAt
-      updatedAt
-      category{
-        catname
-      }
-      body
-      author {
-        name
-        email
-      }
-    }
-  }
-`;
+import { GET_POST } from '../gql/query';
 
 const PostPage = props => {
   let  id = props.match.params.id;

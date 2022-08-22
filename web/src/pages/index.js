@@ -9,12 +9,16 @@ import PostPage from './posts';
 import SignUp from './signup';
 import SignIn from './signin';
 import NewPost from './new';
+import CatsPage from './cats';
+import CatPage from './cat';
 
 const Pages = () => {
   return (
     <Router>
     <Layout>
       <Route exact path="/" component={Home} />
+      <Route exact path="/cats/:id" component={CatPage} />
+      <Route exact path="/cats" component={CatsPage} />
       <Route path="/posts/:id" component={PostPage} />
       <Route path="/new" component={NewPost} />
       <Route path="/signup" component={SignUp} />

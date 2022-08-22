@@ -77,7 +77,7 @@ const typeDefs = gql`
     getPosts: [Post!]!
     getComments: [Comment!]!
     getPost(_id: ID!): Post!
-    getCat(_id: String): Cat!
+    getCat(_id: ID!): Cat!
     postFeed(cursor: String): postFeed
   }
 `;
