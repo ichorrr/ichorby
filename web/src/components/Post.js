@@ -32,7 +32,7 @@ const Post = ({ post }) => {
       />{' '}
       <h3>{post.title}</h3>
       <H4R>{post.category.catname}</H4R>
-      <H4R>{post.createdAt}</H4R> <H4R>{`author: ${post.author.name}`}</H4R>
+      <H4R>{post.createdAt}</H4R> <H4R>{`author ${post.author.name}`}</H4R>
       <PRiv4><p>{post.body}</p></PRiv4>
     </article>
   );

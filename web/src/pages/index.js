@@ -20,6 +20,7 @@ const Pages = () => {
       <Route exact path="/cats/:id" component={CatPage} />
       <Route exact path="/cats" component={CatsPage} />
       <Route path="/posts/:id" component={PostPage} />
+      <Route path="/cats/:cname/post/:id" component={PostPage} />
       <Route path="/new" component={NewPost} />
       <Route path="/signup" component={SignUp} />
       <Route path="/signin" component={SignIn} />
