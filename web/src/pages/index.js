@@ -11,6 +11,7 @@ import SignIn from './signin';
 import NewPost from './new';
 import CatsPage from './cats';
 import CatPage from './cat';
+import MyPosts from './myposts';
 
 const Pages = () => {
   return (
@@ -22,6 +23,7 @@ const Pages = () => {
       <Route path="/posts/:id" component={PostPage} />
       <Route path="/cats/:cname/post/:id" component={PostPage} />
       <Route path="/new" component={NewPost} />
+      <Route path="/myposts" component={MyPosts} />
       <Route path="/signup" component={SignUp} />
       <Route path="/signin" component={SignIn} />
       </Layout>

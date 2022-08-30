@@ -26,6 +26,44 @@ const GET_CAT = gql`
   }
 `;
 
+
+const GET_NOTES = gql`
+  query postFeed($cursor: String) {
+    postFeed(cursor: $cursor) {
+      cursor
+      hasNextPage
+      posts {
+        _id
+        title
+        createdAt
+        category{
+          _id
+          catname
+        }
+        body
+        author {
+          name
+        }
+      }
+    }
+  }
+`;
+
+const GET_MY_POST = gql`
+  query me {
+    me {
+      _id
+      name
+      email
+      posts{
+        _id
+        title
+      }
+    }
+  }
+`;
+
+
 const GET_POST = gql`
   query getPost($id: ID!) {
     getPost(_id: $id) {
@@ -34,6 +72,7 @@ const GET_POST = gql`
       createdAt
       updatedAt
       category{
+        _id
         catname
       }
       body
@@ -54,6 +93,8 @@ const IS_LOGGED_IN = gql`
 export {
   GET_CATS,
   GET_CAT,
+  GET_NOTES,
   GET_POST,
+  GET_MY_POST,
   IS_LOGGED_IN
 };

@@ -15,26 +15,7 @@ const PostParagraph = styled.div`
     margin-bottom: 1em;
 `;
 
-const GET_NOTES = gql`
-  query postFeed($cursor: String) {
-    postFeed(cursor: $cursor) {
-      cursor
-      hasNextPage
-      posts {
-        _id
-        title
-        createdAt
-        category{
-          catname
-        }
-        body
-        author {
-          name
-        }
-      }
-    }
-  }
-`;
+import { GET_NOTES } from '../gql/query';
 
 const Home = () => {
   const { data, loading, error, fetchMore } = useQuery(GET_NOTES);

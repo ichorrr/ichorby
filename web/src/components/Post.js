@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const H4R = styled.div`
@@ -23,7 +24,10 @@ const PRiv4 = styled.div`
 `;
 
 const Post = ({ post }) => {
+  let  idcat = post.category._id;
+{console.log(idcat)}
   return (
+
     <article>
       <img
         src={post.author.avatar}
@@ -31,7 +35,7 @@ const Post = ({ post }) => {
         heiaght="50px"
       />{' '}
       <h3>{post.title}</h3>
-      <H4R>{post.category.catname}</H4R>
+      <Link  to={`/cats/${idcat}`}><H4R>{post.category.catname}</H4R></Link>
       <H4R>{post.createdAt}</H4R> <H4R>{`author ${post.author.name}`}</H4R>
       <PRiv4><p>{post.body}</p></PRiv4>
     </article>
