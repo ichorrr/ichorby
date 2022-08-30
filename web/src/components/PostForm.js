@@ -64,15 +64,20 @@ const PostForm = props => {
         onChange={onChange}
       />
 
-      <label htmlFor="category">Category Post:</label>
-      <input
-        required
-        type="text"
-        id="category"
-        name="category"
-        placeholder="enter category"
-        onChange={onChange}
-      />
+
+
+      <label htmlFor="category">
+      Category Post:
+               <select defaultValue={'DEFAULT'} onChange={onChange}   type="text"
+                 id="category"
+                 name="category">
+                 <option value="DEFAULT" disabled>enter category</option>
+                 <option value="6251ef28413373118838bbdd">news</option>
+                 <option value="6251f1532f7a51343c8ed7df">arts</option>
+                 <option value="6251f1632f7a51343c8ed7e0">notes</option>
+               </select>
+             </label>
+
 
         <TextArea
           required

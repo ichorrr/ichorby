@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import PostForm from '../components/PostForm';
 
+import { GET_MY_POST, GET_NOTES } from '../gql/query';
+
 const NEW_POST = gql`
   mutation createPost($title: String!, $category: String!, $body: String!) {
     createPost(title: $title, category: $category, body: $body) {
@@ -29,6 +31,7 @@ const NewPost = props => {
   });
 
   const [ data, { loading, error } ] = useMutation(NEW_POST, {
+    refetchQueries: [{ query: GET_MY_POST }, { query: GET_NOTES }],
     onCompleted: data => {
       console.log(data.createPost)
       props.history.push(`posts/${data.createPost._id}`);

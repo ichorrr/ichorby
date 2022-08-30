@@ -15,6 +15,7 @@ const PostBlock = styled.div`
 
 const PostFeed = ({ posts }) => {
   return (
+
     <PostBorder>
       {' '}
       {posts.map(post => (

@@ -33,9 +33,9 @@ let uname = data.me.name;
     {uname}
     <ul>
       {data.me.posts.map(post => (
-        <PostBlock key={post._id}>
+
         <Link key={post._id} to={`posts/${post._id}`}><li>{post.title}</li></Link>
-        </PostBlock>
+        
       ))}
     </ul>
     </div>
