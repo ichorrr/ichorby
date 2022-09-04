@@ -42,6 +42,7 @@ const GET_NOTES = gql`
         }
         body
         author {
+          _id
           name
         }
       }
@@ -63,6 +64,13 @@ const GET_MY_POST = gql`
   }
 `;
 
+const GET_ME = gql`
+  query me {
+    me {
+      _id
+    }
+  }
+`;
 
 const GET_POST = gql`
   query getPost($id: ID!) {
@@ -77,6 +85,7 @@ const GET_POST = gql`
       }
       body
       author {
+        _id
         name
         email
       }
@@ -96,5 +105,6 @@ export {
   GET_NOTES,
   GET_POST,
   GET_MY_POST,
+  GET_ME,
   IS_LOGGED_IN
 };

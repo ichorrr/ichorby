@@ -12,13 +12,16 @@ const NEW_POST = gql`
       _id
         title
         category{
+          _id
           catname
         }
         body
         author {
+          _id
           name
         }
         comments{
+          _id
           text
         }
       }

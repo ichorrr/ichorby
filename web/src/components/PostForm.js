@@ -28,9 +28,10 @@ const TextArea = styled.textarea`
 `;
 
 const PostForm = props => {
-
+{console.log(props.title)}
   // set the default state of the form
-  const [values, setValues] = useState();
+  const [values, setValues] = useState( { body: props.body, title: props.title || ''} );
+
 
   // update the state when a user types in the form
   const onChange = event => {
@@ -39,13 +40,13 @@ const PostForm = props => {
       [event.target.name]: event.target.value
     });
   };
-
+{console.log(props)}
   return (
     <Wrapper>
       <Form
         onSubmit={event => {
           event.preventDefault();
-          console.log(values)
+
           props.action({
             variables: {
               ...values
@@ -58,10 +59,11 @@ const PostForm = props => {
       <input
         required
         type="text"
-        id="title"
         name="title"
+        id="title"
         placeholder="enter title"
         onChange={onChange}
+        value={values.title}
       />
 
 
@@ -83,8 +85,10 @@ const PostForm = props => {
           required
           type="text"
           name="body"
+          id="body"
           placeholder="Post content"
           onChange={onChange}
+          value={values.body}
         />
         <Button type="submit">Save</Button>
       </Form>
