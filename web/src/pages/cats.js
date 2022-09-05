@@ -26,7 +26,9 @@ a:hover {
 
 const CatsPage = props => {
 
-  const { loading, error, data, fetchMore } = useQuery( GET_CATS );
+  const { loading, error, data, fetchMore } = useQuery( GET_CATS, {
+  refetchQueries: [{query: GET_CATS} ] });
+  
   if (loading) return <p>loading...</p>;
   if (error) return <p>error...</p>;
 

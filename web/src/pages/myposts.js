@@ -19,8 +19,8 @@ const PostBlock = styled.div`
 
 const MyPosts = props => {
 
-  const { loading, error, data, fetchMore } = useQuery( GET_MY_POST );
-  {console.log(data)}
+  const { loading, error, data, fetchMore } = useQuery( GET_MY_POST,
+  {refetchQueries: [{query: GET_MY_POST }]} );
 
   if (loading) return <p>loading...</p>;
   if (error) return <p>error...</p>;
@@ -35,7 +35,7 @@ let uname = data.me.name;
       {data.me.posts.map(post => (
 
         <Link key={post._id} to={`posts/${post._id}`}><li>{post.title}</li></Link>
-        
+
       ))}
     </ul>
     </div>

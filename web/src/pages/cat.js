@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 import ReactMarkdown from 'react-markdown';
 
-import { GET_CAT } from '../gql/query';
+import { GET_NOTES, GET_POST, GET_CAT } from '../gql/query';
 
 const CatPage = props => {
   let  id = props.match.params.id;
 
-  const { loading, error, data, fetchMore } = useQuery(GET_CAT, {variables: {id}});
+  const { loading, error, data, fetchMore } = useQuery(GET_CAT, {variables: {id},
+  refetchQueries: [{query: GET_NOTES, GET_POST }]});
   if (loading) return <p>loading...</p>;
   if (error) return <p>error...</p>;
 let cname = data.getCat.catname;

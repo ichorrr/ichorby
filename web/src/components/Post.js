@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import PostUser from './PostUser';
+
+import { IS_LOGGED_IN } from '../gql/query';
 import styled from 'styled-components';
 
 const H4R = styled.div`
@@ -24,8 +28,14 @@ const PRiv4 = styled.div`
 `;
 
 const Post = ({ post }) => {
+
   let  idcat = post.category._id;
-{console.log(idcat)}
+  const { loading, error, data } = useQuery(IS_LOGGED_IN);
+    // if the data is loading, display a loading message
+    if (loading) return <p>Loading...</p>;
+    // if there is an error fetching the data, display an error message
+    if (error) return <p>Error!</p>;
+
   return (
 
     <article>
@@ -38,6 +48,9 @@ const Post = ({ post }) => {
       <Link  to={`/cats/${idcat}`}><H4R>{post.category.catname}</H4R></Link>
       <H4R>{post.createdAt}</H4R> <H4R>{`author ${post.author.name}`}</H4R>
       <PRiv4><p>{post.body}</p></PRiv4>
+
+      <PostUser post={post} />
+
     </article>
   );
 };

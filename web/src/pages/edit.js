@@ -48,8 +48,6 @@ const [editPost] = useMutation(EDIT_POST, {
 if (loading) return <p>loading...</p>;
 if (error) return <p>error...</p>;
 
-
-
 let ipme = data.getPost.author._id;
 {console.log(ipme)}
 

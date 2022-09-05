@@ -28,10 +28,8 @@ const TextArea = styled.textarea`
 `;
 
 const PostForm = props => {
-{console.log(props.title)}
   // set the default state of the form
-  const [values, setValues] = useState( { body: props.body, title: props.title || ''} );
-
+  const [values, setValues] = useState( { body: props.body, category: props.category, title: props.title || ''} );
 
   // update the state when a user types in the form
   const onChange = event => {
@@ -40,7 +38,7 @@ const PostForm = props => {
       [event.target.name]: event.target.value
     });
   };
-{console.log(props)}
+
   return (
     <Wrapper>
       <Form
@@ -66,20 +64,16 @@ const PostForm = props => {
         value={values.title}
       />
 
-
-
       <label htmlFor="category">
       Category Post:
-               <select defaultValue={'DEFAULT'} onChange={onChange}   type="text"
-                 id="category"
-                 name="category">
-                 <option value="DEFAULT" disabled>enter category</option>
+               <select onChange={onChange} type="text"
+                 id="category" name="category" value={values.category}>
+                 <option >enter category</option>
                  <option value="6251ef28413373118838bbdd">news</option>
                  <option value="6251f1532f7a51343c8ed7df">arts</option>
                  <option value="6251f1632f7a51343c8ed7e0">notes</option>
                </select>
              </label>
-
 
         <TextArea
           required
