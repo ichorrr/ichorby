@@ -74,7 +74,7 @@ const typeDefs = gql`
 
   type Query {
     getUsers: [User!]!
-    getUser(name: String!): User!
+    getUser(_id: ID!): User
     me: User
     getCats: [Cat!]!
     getPosts: [Post!]!
@@ -92,8 +92,8 @@ const resolvers = {
       const users = await models.User.find({});
       return users;
     },
-    async getUser(parent, {name}, { models }) {
-      return await models.User.findOne({name});
+    async getUser(parent, args, { models }) {
+      return await models.User.findById(args._id);
     },
     async me(parent, args, { models, user }) {
       return await models.User.findById(user.id);

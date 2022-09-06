@@ -37,6 +37,7 @@ const linkStyle = {
 const Post = ({ post }) => {
 
   let  idcat = post.category._id;
+  let iduser = post.author._id;
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
 
     if (loading) return <p>Loading...</p>;
@@ -52,7 +53,7 @@ const Post = ({ post }) => {
       />{' '}
       <h3>{post.title}</h3>
       <Link style={linkStyle} to={`/cats/${idcat}`}><H4R>{post.category.catname}</H4R></Link>
-      <H4R>{post.createdAt}</H4R> <H4R>{`author ${post.author.name}`}</H4R>
+      <H4R>{post.createdAt}</H4R> <Link style={linkStyle} to={`/users/${iduser}`}><H4R>{`author ${post.author.name}`}</H4R></Link>
       <PRiv4><p>{post.body}</p></PRiv4>
       {data.isLoggedIn ? (
         <div>

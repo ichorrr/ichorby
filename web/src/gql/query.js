@@ -26,6 +26,20 @@ const GET_CAT = gql`
   }
 `;
 
+const GET_USER = gql`
+  query getUser($id: ID!) {
+    getUser(_id: $id) {
+      _id
+      name
+      posts{
+        _id
+        title
+        createdAt
+        body
+      }
+    }
+  }
+`;
 
 const GET_NOTES = gql`
   query postFeed($cursor: String) {
@@ -103,6 +117,7 @@ export {
   GET_CATS,
   GET_CAT,
   GET_NOTES,
+  GET_USER,
   GET_POST,
   GET_MY_POST,
   GET_ME,

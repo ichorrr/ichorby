@@ -13,6 +13,7 @@ import CatsPage from './cats';
 import CatPage from './cat';
 import MyPosts from './myposts';
 import EditPost from './edit';
+import GetUser from './user';
 
 const IS_LOGGED_IN = gql`
   {
@@ -26,9 +27,11 @@ const Pages = () => {
     <Layout>
       <Route exact path="/" component={Home} />
       <Route exact path="/cats/:id" component={CatPage} />
+      <Route exact path="/users/:id" component={GetUser} />
       <Route exact path="/cats" component={CatsPage} />
       <Route path="/posts/:id" component={PostPage} />
       <Route path="/cats/:cname/post/:id" component={PostPage} />
+      <Route path="/users/:uname/post/:id" component={PostPage} />
       <PrivateRoute path="/new" component={NewPost} />
       <PrivateRoute path="/edit/:id" component={EditPost} />
       <PrivateRoute path="/myposts" component={MyPosts} />

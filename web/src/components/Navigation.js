@@ -33,9 +33,6 @@ const Navigation = props => {
           <Link to="/myposts">My Posts</Link>
         </li>
         <li>
-          <Link to="/myjobs">Jobs</Link>
-        </li>
-        <li>
           <Link to="/mycomments">My comments</Link>
         </li>
         </UserState>
