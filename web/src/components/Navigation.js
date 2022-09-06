@@ -24,9 +24,6 @@ const Navigation = props => {
           <Link to="">Ichor.by</Link>
         </li>
         <li>
-          <Link to="/news">News</Link>
-        </li>
-        <li>
           <Link to="/cats">All Cats</Link>
         </li>
         <UserState>

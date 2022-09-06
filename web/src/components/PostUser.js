@@ -15,8 +15,7 @@ const PostUser = props => {
 
   return (
 <React.Fragment>
-{console.log(data.me._id)}
-{console.log(props.post.author._id)}
+
 {data.me._id === props.post.author._id && (
   <React.Fragment>
     <Link to={`/edit/${props.post._id}`}>Edit</Link>

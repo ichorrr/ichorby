@@ -26,11 +26,10 @@ const MyPosts = props => {
   if (error) return <p>error...</p>;
 
 let uname = data.me.name;
-{console.log(uname)}
 
   return (
     <div>
-    {uname}
+    {uname} (all posts: {data.me.posts.length})
     <ul>
       {data.me.posts.map(post => (
 

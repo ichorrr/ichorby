@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
 import PostUser from './PostUser';
 
 import { IS_LOGGED_IN } from '../gql/query';
@@ -10,6 +10,7 @@ import styled from 'styled-components';
 const H4R = styled.div`
     background-color: #fff;
     display: inline;
+
     padding: 0.5em  0.8em;
     margin: 0.5em 1em 0.5em 0;
     font: normal 0.9em Arial, sans-serif;
@@ -27,13 +28,18 @@ const PRiv4 = styled.div`
     font-size: 1.2em;
 `;
 
+const linkStyle = {
+  textDecoration: "none",
+  display: "inline",
+  padding: "0",
+};
+
 const Post = ({ post }) => {
 
   let  idcat = post.category._id;
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
-    // if the data is loading, display a loading message
+
     if (loading) return <p>Loading...</p>;
-    // if there is an error fetching the data, display an error message
     if (error) return <p>Error!</p>;
 
   return (
@@ -45,12 +51,16 @@ const Post = ({ post }) => {
         heiaght="50px"
       />{' '}
       <h3>{post.title}</h3>
-      <Link  to={`/cats/${idcat}`}><H4R>{post.category.catname}</H4R></Link>
+      <Link style={linkStyle} to={`/cats/${idcat}`}><H4R>{post.category.catname}</H4R></Link>
       <H4R>{post.createdAt}</H4R> <H4R>{`author ${post.author.name}`}</H4R>
       <PRiv4><p>{post.body}</p></PRiv4>
-
+      {data.isLoggedIn ? (
+        <div>
       <PostUser post={post} />
-
+      </div>
+    ) : (
+        <div></div>
+      )}
     </article>
   );
 };

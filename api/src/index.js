@@ -23,6 +23,7 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     email: String!
+    avatar: String
     posts: [Post!]!
     comments: [Comment!]!
   }

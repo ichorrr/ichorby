@@ -14,6 +14,10 @@ const PostBlock = styled.div`
 `;
 
 const PostFeed = ({ posts }) => {
+let items = [posts]
+  {console.log(items)}
+  let litem = items.length;
+  {console.log(litem)}
   return (
 
     <PostBorder>
