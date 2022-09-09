@@ -34,6 +34,7 @@ const typeDefs = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     category: Cat!
+    viewsCount: String!
     body: String!
     author: User!
     comments: [Comment!]!
@@ -112,7 +113,13 @@ const resolvers = {
       return comments;
     },
     async getPost(parent, args, { models }) {
-      const post = await models.Post.findById(args._id);
+      const post = await models.Post.findOneAndUpdate(
+        {
+          _id: args._id
+        },
+        { $inc: { viewsCount: 1 } },
+        { returnDocument: 'true' }
+      );
       return post;
     },
     async getCat(parent, args, { models }) {
@@ -120,7 +127,7 @@ const resolvers = {
       return cat;
     },
     postFeed: async (parent, { cursor }, { models }) => {
-      const limit = 2;
+      const limit = 6;
       let hasNextPage = false;
       let cursorQuery = {};
 

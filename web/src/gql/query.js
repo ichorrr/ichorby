@@ -5,7 +5,7 @@ const GET_CATS = gql`
     getCats {
       _id
       catname
-      posts{
+      posts {
         title
       }
     }
@@ -17,7 +17,7 @@ const GET_CAT = gql`
     getCat(_id: $id) {
       _id
       catname
-      posts{
+      posts {
         _id
         title
         createdAt
@@ -31,7 +31,7 @@ const GET_USER = gql`
     getUser(_id: $id) {
       _id
       name
-      posts{
+      posts {
         _id
         title
         createdAt
@@ -50,10 +50,11 @@ const GET_NOTES = gql`
         _id
         title
         createdAt
-        category{
+        category {
           _id
           catname
         }
+        viewsCount
         body
         author {
           _id
@@ -70,7 +71,7 @@ const GET_MY_POST = gql`
       _id
       name
       email
-      posts{
+      posts {
         _id
         title
       }
@@ -93,7 +94,8 @@ const GET_POST = gql`
       title
       createdAt
       updatedAt
-      category{
+      viewsCount
+      category {
         _id
         catname
       }

@@ -14,7 +14,10 @@ const Post = mongoose.model(
         type: mongoose.Types.ObjectId,
         ref: 'Cat'
       },
-
+      viewsCount: {
+        type: Number,
+        default: 0
+      },
       body: {
         type: String,
         required: true

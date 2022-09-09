@@ -8,43 +8,43 @@ import { IS_LOGGED_IN } from '../gql/query';
 import styled from 'styled-components';
 
 const H4R = styled.div`
-    background-color: #fff;
-    display: inline;
+  background-color: #fff;
+  display: inline;
 
-    padding: 0.5em  0.8em;
-    margin: 0.5em 1em 0.5em 0;
-    font: normal 0.9em Arial, sans-serif;
+  padding: 0.5em 0.8em;
+  margin: 0.5em 1em 0.5em 0;
+  font: normal 0.9em Arial, sans-serif;
 
-    :hover {
-      color: #fff;
-      cursor: pointer;
-      background: #bb0106;
-    }
-
+  :hover {
+    color: #fff;
+    cursor: pointer;
+    background: #bb0106;
+  }
 `;
 
 const PRiv4 = styled.div`
-    font-family: Arial, sans-serif;
-    font-size: 1.2em;
+  font-family: Arial, sans-serif;
+  font-size: 1.2em;
 `;
 
 const linkStyle = {
-  textDecoration: "none",
-  display: "inline",
-  padding: "0",
+  textDecoration: 'none',
+  display: 'inline',
+  padding: '0'
 };
 
 const Post = ({ post }) => {
-
-  let  idcat = post.category._id;
+  {
+    console.log(post.viewsCount);
+  }
+  let idcat = post.category._id;
   let iduser = post.author._id;
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error!</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
 
   return (
-
     <article>
       <img
         src={post.author.avatar}
@@ -52,14 +52,22 @@ const Post = ({ post }) => {
         heiaght="50px"
       />{' '}
       <h3>{post.title}</h3>
-      <Link style={linkStyle} to={`/cats/${idcat}`}><H4R>{post.category.catname}</H4R></Link>
-      <H4R>{post.createdAt}</H4R> <Link style={linkStyle} to={`/users/${iduser}`}><H4R>{`author ${post.author.name}`}</H4R></Link>
-      <PRiv4><p>{post.body}</p></PRiv4>
+      <Link style={linkStyle} to={`/cats/${idcat}`}>
+        <H4R>{post.category.catname}</H4R>
+      </Link>
+      <H4R>{post.createdAt}</H4R>
+      <Link style={linkStyle} to={`/users/${iduser}`}>
+        <H4R>{`author ${post.author.name}`}</H4R>
+      </Link>
+      <H4R>{`views ${post.viewsCount}`}</H4R>
+      <PRiv4>
+        <p>{post.body}</p>
+      </PRiv4>
       {data.isLoggedIn ? (
         <div>
-      <PostUser post={post} />
-      </div>
-    ) : (
+          <PostUser post={post} />
+        </div>
+      ) : (
         <div></div>
       )}
     </article>
