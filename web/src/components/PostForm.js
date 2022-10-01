@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 import Button from './Button';
 
 const Wrapper = styled.div`
@@ -29,16 +30,30 @@ const TextArea = styled.textarea`
 
 const PostForm = props => {
   // set the default state of the form
-  const [values, setValues] = useState( { body: props.body, category: props.category, title: props.title || ''} );
+  const [body, setBody] = useState({body: props.body || ''});
+  const [value, setValue] = useState( { body: props.body, category: props.category, title: props.title || ''} );
 
   // update the state when a user types in the form
   const onChange = event => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value
+    setValue({
+      ...value,
+      [event.target.name]: event.target.value,
     });
   };
 
+      const onChangeMDE = (body) => {
+    setBody({
+      body,
+      value: event.target.value });
+
+  };
+
+{console.log(value.body)}
+  {console.log(value.title)}
+  {console.log(value.category)}
+  {console.log(body.body)}
+
+{console.log(value.body)}
   return (
     <Wrapper>
       <Form
@@ -47,7 +62,8 @@ const PostForm = props => {
 
           props.action({
             variables: {
-              ...values
+              ...value,
+              ...body,
             }
           });
         }}
@@ -61,13 +77,13 @@ const PostForm = props => {
         id="title"
         placeholder="enter title"
         onChange={onChange}
-        value={values.title}
+        value={value.title}
       />
 
       <label htmlFor="category">
       Category Post:
                <select onChange={onChange} type="text"
-                 id="category" name="category" value={values.category}>
+                 id="category" name="category" value={value.category}>
                  <option >enter category</option>
                  <option value="6251ef28413373118838bbdd">news</option>
                  <option value="6251f1532f7a51343c8ed7df">arts</option>
@@ -75,14 +91,14 @@ const PostForm = props => {
                </select>
              </label>
 
-        <TextArea
+        <SimpleMDE
           required
           type="text"
           name="body"
           id="body"
           placeholder="Post content"
-          onChange={onChange}
-          value={values.body}
+          onChange={onChangeMDE}
+          value={body.body}
         />
         <Button type="submit">Save</Button>
       </Form>
