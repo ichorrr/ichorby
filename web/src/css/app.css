@@ -13,6 +13,15 @@
   }
 }
 
+.hidden {
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  height: : 0;
+  width: 0;
+  overflow: hidden;
+  line-height: 0;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

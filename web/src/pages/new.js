@@ -7,10 +7,11 @@ import PostForm from '../components/PostForm';
 import { GET_MY_POST, GET_NOTES } from '../gql/query';
 
 const NEW_POST = gql`
-  mutation createPost($title: String!, $category: String!, $body: String!) {
-    createPost(title: $title, category: $category, body: $body) {
+  mutation createPost($title: String!, $imageUrl: String, $category: String!, $body: String!) {
+    createPost(title: $title, imageUrl: $imageUrl, category: $category, body: $body) {
       _id
         title
+        imageUrl
         category{
           _id
           catname

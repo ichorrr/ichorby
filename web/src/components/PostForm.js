@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
@@ -30,8 +30,10 @@ const TextArea = styled.textarea`
 
 const PostForm = props => {
   // set the default state of the form
+  const inputFileRef = useRef(null);
   const [body, setBody] = useState({body: props.body || ''});
-  const [value, setValue] = useState( { body: props.body, category: props.category, title: props.title || ''} );
+  const [imageUrl, setImageUrl] = useState({imageUrl: props.imageUrl || ''});
+  const [value, setValue] = useState( { category: props.category, title: props.title || ''} );
 
   // update the state when a user types in the form
   const onChange = event => {
@@ -41,21 +43,32 @@ const PostForm = props => {
     });
   };
 
-      const onChangeMDE = (body) => {
-    setBody({
-      body,
-      value: event.target.value });
-
+  const onChangeMDE = (body) => {
+    setBody({body});
   };
 
-{console.log(value.body)}
-  {console.log(value.title)}
-  {console.log(value.category)}
-  {console.log(body.body)}
 
-{console.log(value.body)}
+  const handleChangeFile = async (imageUrl) =>{
+
+          const formData = new FormData();
+          const file = event.target.files[0];
+          formData.append('imageUrl', file);
+          const res = await fetch('http://localhost:4000/upload', {
+            method: 'POST',
+            body: formData,
+          });
+          const data = await res.json();
+          imageUrl = await data.url;
+          setImageUrl({ imageUrl});
+
+  }
+  console.log(imageUrl);
+  console.log(body);
+  console.log(value);
   return (
     <Wrapper>
+    <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large" >Upload images</Button>
+
       <Form
         onSubmit={event => {
           event.preventDefault();
@@ -64,10 +77,21 @@ const PostForm = props => {
             variables: {
               ...value,
               ...body,
+              ...imageUrl,
             }
           });
         }}
       >
+
+      <input
+        className="hidden"
+        ref={inputFileRef}
+        type="file"
+        name="imageUrl"
+        onChange={handleChangeFile}
+        value={value.imageUrl}
+      />
+      <img src={imageUrl.imageUrl} />
 
       <label htmlFor="title">Title Post:</label>
       <input
@@ -79,7 +103,6 @@ const PostForm = props => {
         onChange={onChange}
         value={value.title}
       />
-
       <label htmlFor="category">
       Category Post:
                <select onChange={onChange} type="text"
@@ -102,6 +125,7 @@ const PostForm = props => {
         />
         <Button type="submit">Save</Button>
       </Form>
+
     </Wrapper>
   );
 };

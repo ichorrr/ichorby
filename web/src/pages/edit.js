@@ -13,6 +13,7 @@ const EditPost = props => {
   const {data: userdata } = useQuery(GET_ME);
   const {  loading, error, data } = useQuery(GET_POST, { variables: { id } });
   {console.log(data)}
+
   {console.log(userdata)}
 const [editPost] = useMutation(EDIT_POST, {
     variables: {
@@ -29,7 +30,7 @@ if (error) return <p>error...</p>;
 
 if(userdata.me._id !== data.getPost.author._id)
 {return <p>You do not have access to edit this post</p>}
-  return <PostForm body={data.getPost.body} title={data.getPost.title} category={data.getPost.category._id} action={editPost}/>
+  return <PostForm body={data.getPost.body} imageUrl={data.getPost.imageUrl} title={data.getPost.title} category={data.getPost.category._id} action={editPost}/>
 };
 
 export default EditPost;

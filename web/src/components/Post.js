@@ -51,6 +51,7 @@ const Post = ({ post }) => {
         alt={`${post.author.name} avatar`}
         heiaght="50px"
       />{' '}
+      <img src={post.imageUrl} />
       <h3>{post.title}</h3>
       <Link style={linkStyle} to={`/cats/${idcat}`}>
         <H4R>{post.category.catname}</H4R>
@@ -61,7 +62,7 @@ const Post = ({ post }) => {
       </Link>
       <H4R>{`views ${post.viewsCount}`}</H4R>
       <PRiv4>
-        <p>{post.body}</p>
+        <ReactMarkdown children={post.body}  />
       </PRiv4>
       {data.isLoggedIn ? (
         <div>

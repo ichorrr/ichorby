@@ -9,7 +9,9 @@ const Post = mongoose.model(
         type: String,
         required: true
       },
-
+      imageUrl: {
+        type: String,
+      },
       category: {
         type: mongoose.Types.ObjectId,
         ref: 'Cat'
@@ -22,13 +24,11 @@ const Post = mongoose.model(
         type: String,
         required: true
       },
-
       author: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
         required: true
       },
-
       comments: [
         {
           type: mongoose.Types.ObjectId,

@@ -49,6 +49,7 @@ const GET_NOTES = gql`
       posts {
         _id
         title
+        imageUrl
         createdAt
         category {
           _id
@@ -92,6 +93,7 @@ const GET_POST = gql`
     getPost(_id: $id) {
       _id
       title
+      imageUrl
       createdAt
       updatedAt
       viewsCount

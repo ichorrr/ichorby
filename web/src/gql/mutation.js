@@ -1,10 +1,11 @@
 import { gql } from '@apollo/client';
 
 const EDIT_POST = gql`
-  mutation updatePost($id: String!, $title: String!, $body: String!) {
-    updatePost(_id: $id, title: $title, body: $body) {
+  mutation updatePost($id: String!, $imageUrl: String, $title: String!, $body: String!) {
+    updatePost(_id: $id, imageUrl: $imageUrl, title: $title, body: $body) {
       _id
         title
+        imageUrl
         createdAt
         category{
           _id

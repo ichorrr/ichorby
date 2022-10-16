@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const depthLimit = require('graphql-depth-limit');
 const { createComplexityLimitRule } = require('graphql-validation-complexity');
+const multer = require('multer')
 
 require('dotenv').config();
 const db = require('./db');
@@ -30,6 +31,7 @@ const typeDefs = gql`
 
   type Post {
     _id: ID!
+    imageUrl: String
     title: String!
     createdAt: DateTime!
     updatedAt: DateTime!
@@ -67,9 +69,9 @@ const typeDefs = gql`
 
     createCat(catname: String!): Cat!
     deleteCat(_id: String!): Boolean!
-    createPost(title: String!, category: String!, body: String!): Post!
+    createPost(title: String!, imageUrl: String, category: String!, body: String!): Post!
     deletePost(_id: String!): Boolean!
-    updatePost(_id: String!, title: String!, body: String!): Post!
+    updatePost(_id: String!, title: String!,  imageUrl: String,  body: String!): Post!
     createComment(text: String!, post: String!): Comment!
   }
 
@@ -237,7 +239,7 @@ const resolvers = {
       }
     },
 
-    updatePost: async (parent, { title, body, _id }, { models, user }) => {
+    updatePost: async (parent, { imageUrl, title, body, _id }, { models, user }) => {
       // if not a user, throw an Authentication Error
       if (!user) {
         throw new AuthenticationError('You must be signed in to update a note');
@@ -258,7 +260,8 @@ const resolvers = {
         {
           $set: {
             title,
-            body
+            body,
+            imageUrl
           }
         },
         {
@@ -274,6 +277,7 @@ const resolvers = {
 
       const newPost = await models.Post({
         title: args.title,
+        imageUrl: args.imageUrl,
         body: args.body,
         category: args.category,
         author: mongoose.Types.ObjectId(user.id)
@@ -379,6 +383,29 @@ db.connect(DB_HOST);
 app.use(helmet());
 // CORS middleware
 app.use(cors());
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads')
+  },
+  filename: (req, file, cb) => {
+    console.log(file)
+    cb(null, file.originalname)
+  }
+});
+
+const upload = multer({storage: storage});
+
+app.use(express.json());
+
+app.use('/uploads', express.static('uploads'))
+
+app.post('/upload', upload.single('imageUrl'), (req, res) => {
+  res.json({
+    url: `http://localhost:4000/uploads/${req.file.originalname}`,
+  })
+  console.log(req.file)
+})
 
 // get the user info from a JWT
 const getUser = token => {
