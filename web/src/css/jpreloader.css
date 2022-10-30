@@ -1,0 +1,182 @@
+body{
+	display:none;
+}
+#jpreOverlay {
+	background-color: #000;
+	font-family: Arial, sans-serif;
+}
+
+#jSplash {
+position: absolute;
+	width: 90%;
+	margin: 0 auto;
+}
+
+#jSplash img {
+	max-width: 100%;
+}
+
+#jSplash h2 {
+	max-width: 600px;
+	padding-top: 1.0em;
+	color: #f25f4c;
+}
+
+#jSplash p {
+	color:#dfdfdf;
+	font-size: 0.6em;
+	max-width: 600px;
+	padding-top: 1.6em;
+	line-height: 1.6em;
+}
+
+#jpreSlide{
+	text-align:center;
+	width: 90%;
+	max-width: 600px;
+	height: 350px;
+	padding: 40px;
+	margin: auto;
+	bottom: 50%; left: 0; right: 0;
+}
+
+#jpreLoader{
+	margin: 0 auto;
+	left: 0; right: 0;
+}
+#jpreBar {
+
+	background-size:30px 30px;
+	-moz-background-size:30px 30px;
+	-webkit-background-size:30px 30px;
+	-o-background-size:30px 30px;
+
+	background-color:#b8b8b8;
+	background-image: -moz-linear-gradient(-45deg,
+		rgba(255,255,255,0.15) 0%,
+		rgba(255,255,255,0.15) 25%,
+		rgba(255,255,255,0) 25%,
+		rgba(255,255,255,0) 50%,
+		rgba(255,255,255,0.15) 50%,
+		rgba(255,255,255,0.15) 75%,
+		rgba(255,255,255,0) 75%,
+		rgba(255,255,255,0) 100%);
+	background-image: -webkit-gradient(linear, left top, right bottom,
+		color-stop(0%,rgba(255,255,255,0.2)),
+		color-stop(25%,rgba(255,255,255,0.2)),
+		color-stop(25%,rgba(255,255,255,0)),
+		color-stop(50%,rgba(255,255,255,0)),
+		color-stop(50%,rgba(255,255,255,0.2)),
+		color-stop(75%,rgba(255,255,255,0.2)),
+		color-stop(75%,rgba(255,255,255,0)),
+		color-stop(100%,rgba(255,255,255,0)));
+	background-image: -webkit-linear-gradient(-45deg,
+		rgba(255,255,255,0.3) 0%,
+		rgba(255,255,255,0.3) 25%,
+		rgba(255,255,255,0) 25%,
+		rgba(255,255,255,0) 50%,
+		rgba(255,255,255,0.3) 50%,
+		rgba(255,255,255,0.3) 75%,
+		rgba(255,255,255,0) 75%,
+		rgba(255,255,255,0) 100%);
+	background-image: -o-linear-gradient(-45deg,
+		rgba(255,255,255,0.15) 0%,
+		rgba(255,255,255,0.15) 25%,
+		rgba(255,255,255,0) 25%,
+		rgba(255,255,255,0) 50%,
+		rgba(255,255,255,0.15) 50%,
+		rgba(255,255,255,0.15) 75%,
+		rgba(255,255,255,0) 75%,
+		rgba(255,255,255,0) 100%);
+	background-image: -ms-linear-gradient(-45deg,
+		rgba(255,255,255,0.15) 0%,
+		rgba(255,255,255,0.15) 25%,
+		rgba(255,255,255,0) 25%,
+		rgba(255,255,255,0) 50%,
+		rgba(255,255,255,0.15) 50%,
+		rgba(255,255,255,0.15) 75%,
+		rgba(255,255,255,0) 75%,
+		rgba(255,255,255,0) 100%);
+	background-image: linear-gradient(135deg,
+		rgba(255,255,255,0.15) 0%,
+		rgba(255,255,255,0.15) 25%,
+		rgba(255,255,255,0) 25%,
+		rgba(255,255,255,0) 50%,
+		rgba(255,255,255,0.15) 50%,
+		rgba(255,255,255,0.15) 75%,
+		rgba(255,255,255,0) 75%,
+		rgba(255,255,255,0) 100%);
+
+	animation: progress 2s linear infinite;
+	-moz-animation: progress 2s linear infinite;
+	-webkit-animation: progress 2s linear infinite;
+	-ms-animation: progress 2s linear infinite;
+	-o-animation: progress 2s linear infinite;
+}
+#jprePercentage {
+	color:#b6b6b6;
+	font-weight:bold;
+	text-align:center;
+	font-size: 1em;
+}
+
+#jpreButton{
+	cursor:pointer;
+	font-weight:bold;
+	font-size: 0.9em;
+	text-align:center;
+	width: 78px;
+	height: 78px;
+	background: url(../img/enter_logo.png) 50% no-repeat;
+	margin: -39px;
+	color:#fff;
+}
+
+#jpreButton:hover {
+	background: url(../img/enter_logo_hover.png) 50% no-repeat;
+}
+
+#jpreButton p {
+	padding-top: 100px;
+}
+
+@-webkit-keyframes progress {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -60px -60px;
+  }
+}
+@-moz-keyframes progress {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -60px -60px;
+  }
+}
+@-ms-keyframes progress {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -60px -60px;
+  }
+}
+@-o-keyframes progress {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -60px -60px;
+  }
+}
+@keyframes progress {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -60px -60px;
+  }
+}

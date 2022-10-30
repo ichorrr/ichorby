@@ -129,7 +129,7 @@ const resolvers = {
       return cat;
     },
     postFeed: async (parent, { cursor }, { models }) => {
-      const limit = 6;
+      const limit = 3;
       let hasNextPage = false;
       let cursorQuery = {};
 

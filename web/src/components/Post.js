@@ -46,11 +46,7 @@ const Post = ({ post }) => {
 
   return (
     <article>
-      <img
-        src={post.author.avatar}
-        alt={`${post.author.name} avatar`}
-        heiaght="50px"
-      />{' '}
+    <div id={post._id}></div>
       <img src={post.imageUrl} />
       <h3>{post.title}</h3>
       <Link style={linkStyle} to={`/cats/${idcat}`}>
